@@ -6,8 +6,7 @@ metadata:
 spec:
   tier: platform
   order: 100
-  selector: ''
-  serviceAccountSelector: ''
+  selector: app == 'db'
   ingress:
     - action: Allow
       protocol: TCP

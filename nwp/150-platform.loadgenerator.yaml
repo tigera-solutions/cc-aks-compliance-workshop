@@ -14,7 +14,7 @@ spec:
   - action: Allow
     protocol: TCP
     destination:
-      selector: {}
+      selector: ''
       ports:
       - 80
       - 443
