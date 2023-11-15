@@ -8,7 +8,6 @@ spec:
   order: 150
   selector: app == 'loadgenerator'
   types:
-  - Ingress
   - Egress
   egress:
   - action: Allow

@@ -8,7 +8,6 @@ spec:
   order: 120
   selector: app == 'worker'
   types:
-  - Ingress
   - Egress
   egress:
   - action: Allow

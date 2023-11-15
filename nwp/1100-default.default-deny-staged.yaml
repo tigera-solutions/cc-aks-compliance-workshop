@@ -7,5 +7,5 @@ spec:
   order: 1100
   namespaceSelector: kubernetes.io/metadata.name == "vote"
   types:
-    - Ingress
-    - Egress
+  - Ingress
+  - Egress

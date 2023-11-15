@@ -7,13 +7,13 @@ spec:
   tier: platform
   order: 110
   selector: app == 'redis'
-  ingress:
-    - action: Allow
-      protocol: TCP
-      source:
-        selector: app == "worker" || app == "vote"
-      destination:
-        ports:
-          - '6379'
   types:
-    - Ingress
+  - Ingress
+  ingress:
+  - action: Allow
+    protocol: TCP
+    source:
+      selector: app == "worker" || app == "vote"
+    destination:
+      ports:
+        - '6379'

@@ -7,13 +7,13 @@ spec:
   tier: platform
   order: 100
   selector: app == 'db'
-  ingress:
-    - action: Allow
-      protocol: TCP
-      source:
-        selector: app == "worker" || app == "result"
-      destination:
-        ports:
-          - '5432'
   types:
-    - Ingress
+  - Ingress
+  ingress:
+  - action: Allow
+    protocol: TCP
+    source:
+      selector: app == "worker" || app == "result"
+    destination:
+      ports:
+        - '5432'
