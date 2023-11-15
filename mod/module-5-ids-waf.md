@@ -70,7 +70,7 @@ Calico Cloud WAF allows you to selectively run service traffic within your clust
      'vote.vote'
    ```
    
-   Observe that the result was an HTTP 200 - Ok . The malicious request was not blocked.
+   Observe that the result was an `HTTP/1.1 200 OK` . The malicious request was not blocked.
 
 2. Enable the WAF in the Calico Cloud UI.
 
@@ -89,7 +89,7 @@ Calico Cloud WAF allows you to selectively run service traffic within your clust
      'vote.vote'
    ```
    
-   You will note that the result will be an HTTP 403 - Forbidden. This response returns from the WAF.
+   You will note that the result will be an `HTTP/1.1 403 Forbidden`. This response returns from the WAF.
 
 --- 
 
