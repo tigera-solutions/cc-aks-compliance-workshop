@@ -66,7 +66,7 @@
 4. Deploy the application to test the enviroment.
 
    ```bash
-   kubectl create -f web
+   kubectl apply -f web
    ```
 
    The deployment will fail to be created. The result will be similar to the below
