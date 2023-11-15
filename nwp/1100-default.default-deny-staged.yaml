@@ -5,12 +5,7 @@ metadata:
 spec:
   tier: default
   order: 1100
-  selector: ''
   namespaceSelector: kubernetes.io/metadata.name == "vote"
-  serviceAccountSelector: ''
-  doNotTrack: false
-  applyOnForward: false
-  preDNAT: false
   types:
     - Ingress
     - Egress

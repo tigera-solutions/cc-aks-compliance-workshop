@@ -1,0 +1,18 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: platform.redis
+  namespace: vote
+spec:
+  tier: platform
+  order: 110
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: app == "worker" || app == "vote"
+      destination:
+        ports:
+          - '6379'
+  types:
+    - Ingress
