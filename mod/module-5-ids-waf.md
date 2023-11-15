@@ -74,11 +74,11 @@ Calico Cloud WAF allows you to selectively run service traffic within your clust
 
 2. Enable the WAF in the Calico Cloud UI.
 
-![enable_waf](https://github.com/tigera-solutions/cc-aks-compliance-workshop/assets/104035488/a8c3eca4-b156-4bf4-bd72-a197c5c34402)
+   ![enable_waf](https://github.com/tigera-solutions/cc-aks-compliance-workshop/assets/104035488/a8c3eca4-b156-4bf4-bd72-a197c5c34402)
 
 3. Verify that the service selected includes the frontends `vote` and `result` of our example application and click `Confirm Selection`.
 
-![selected_service](https://github.com/tigera-solutions/cc-aks-compliance-workshop/assets/104035488/467002cf-d4a1-4ee5-9ccb-c789c032f2a4)
+   ![selected_service](https://github.com/tigera-solutions/cc-aks-compliance-workshop/assets/104035488/467002cf-d4a1-4ee5-9ccb-c789c032f2a4)
 
 
 4. Go back to the attack pod, and repeat the request.
